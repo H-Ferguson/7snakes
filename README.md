@@ -7,9 +7,13 @@ This code has a dependancy on a modified fork of a Battlesnake PettingZoo Enviro
 the fork to use is here https://github.com/H-Ferguson/pz-battlesnake
 
 Install the forked `pz-battlesnake` library locally by running the `setup.py` script that lives in that repo: 
-`python3 setup.py install --user` 
+```
+python3 setup.py install --user
+``` 
 make sure to install other dependancies using pip (now back in this repo):
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
 You can then run the working trainer that lives in `diy_trainer.py`
 
