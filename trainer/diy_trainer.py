@@ -30,13 +30,9 @@ episodes = 10
 for e in range(episodes):
 
     state = env.reset()
-    dones = {}
-    for agent in env.agents:
-      dones[agent] = False
 
     # Play the game!
     while True:
-
         actions = {}
         # Run agent on the state
         for agent in env.agents: 
@@ -44,35 +40,35 @@ for e in range(episodes):
 
         # Agent performs action
         next_state, reward, done, trunc, info = env.step(actions)
-        env.render(mode="human")
+        # env.render(mode="human")
+        
+        # this is dumb but 
+        if len(env.agents) <= 0:
+          break
 
         # Remember
         for snake in snakes:
-          snakes[snake].cache(state[snake], next_state[snake], actions[snake], reward[snake], done[snake])
+          this_snake = snakes[snake]
+          snake_state = state[snake]
+          snake_next_state = next_state[snake]
+          snake_action = actions[snake]
+          snake_reward = reward[snake]
+          snake_done = done[snake]
+          this_snake.cache(snake_state, snake_next_state, snake_action, snake_reward, snake_done)
 
           # Learn
-          q, loss = snakes[snake].learn()
+          q, loss = this_snake.learn()
 
           # Logging
-          logger.log_step(reward[snake], loss, q)
+          logger.log_step(snake_reward, loss, q)
           logger.log_episode()
           if e % 20 == 0:
-            logger.record(episode=e, epsilon=snakes[snake].exploration_rate, step=snakes[snake].curr_step)
+            logger.record(episode=e, epsilon=this_snake.exploration_rate, step=this_snake.curr_step)
 
         # Update state
         state = next_state
 
-        for snake in snakes:
-          dones[snake] = done[snake]
-        all_done = False 
-        for snake in snakes: 
-          if done[snake] == False:
-            break;
-          all_done = True
-
-        # Check if end of game
-        if all_done:
-            break
+        
 
     
 
