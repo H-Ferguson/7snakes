@@ -26,7 +26,7 @@ for agent in env.possible_agents:
 
 logger = MetricLogger(save_dir)
 
-episodes = 1
+episodes = 10
 for e in range(episodes):
 
     state = env.reset()
@@ -53,7 +53,7 @@ for e in range(episodes):
           # Learn
           q, loss = snakes[snake].learn()
 
-          Logging
+          # Logging
           logger.log_step(reward[snake], loss, q)
           logger.log_episode()
           if e % 20 == 0:
