@@ -26,7 +26,7 @@ for agent in env.possible_agents:
 
 logger = MetricLogger(save_dir)
 
-episodes = 10
+episodes = 1000
 for e in range(episodes):
 
     state = env.reset()
