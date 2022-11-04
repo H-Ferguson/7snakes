@@ -12,12 +12,14 @@ from pz_battlesnake.env import standard_v0
 env = standard_v0.env() 
 
 for _ in range(10):
-    env.reset()
+    observations = env.reset()
+    print(observations)
+    env.render()
     done = False
     while not done:
         for agent in env.agents:
-            observation, reward, termination, truncation, info = env.last()
             action = env.action_space(agent).sample() if not termination else None
+            observation, reward, termination, truncation, info = env.step(action)
             env.step(action)
-        env.render()
+        # env.render()
         done = not env.agents
