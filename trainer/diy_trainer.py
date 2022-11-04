@@ -8,7 +8,7 @@ from snake import Snake
 from pathlib import Path
 import datetime
 
-env = solo_v0.env()
+env = standard_v0.env()
 
 use_cuda = torch.cuda.is_available()
 print(f"Using CUDA: {use_cuda}")
