@@ -53,11 +53,11 @@ for e in range(episodes):
           # Learn
           q, loss = snakes[snake].learn()
 
-          # Logging
-          # logger.log_step(reward[snake], loss, q)
-          # logger.log_episode()
-          # if e % 20 == 0:
-          #   logger.record(episode=e, epsilon=snakes[snake].exploration_rate, step=snakes[snake].curr_step)
+          Logging
+          logger.log_step(reward[snake], loss, q)
+          logger.log_episode()
+          if e % 20 == 0:
+            logger.record(episode=e, epsilon=snakes[snake].exploration_rate, step=snakes[snake].curr_step)
 
         # Update state
         state = next_state
